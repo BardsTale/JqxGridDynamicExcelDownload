@@ -18,7 +18,6 @@ SpringBoot 기반의 프로젝트로 예시가 되어있는 코드이며 개발�
 - [사용법](#사용법)
     - [프론트엔드](#프론트엔드_사용법)
     - [백엔드](#백엔드_사용법)
-- [예제](#예제)
 - [관련기술](#관련프로젝트)
 - [관리자](#관리자)
 
@@ -95,14 +94,76 @@ compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.2'
 사용법은 프론트엔드 방면의 Rest Api 방식의 호출을 통해 가능합니다.
 
 ### 프론트엔드_사용법
+다양한 방법으로 doExcel(..) 함수를 할당하고 호출하여 사용하면 됩니다.
+
+```sh
+
+//정의된 doExcel 함수.
+function doExcel(grid_id,file_name,row_data) {
+...
+}
+
+//클릭 이벤트에서 doExcel 함수 호출.
+function clickEvent(e) 
+    //함수의 인자값을 각자 사용하는 방식으로 할당하여 전달.
+    /* row_data는 jqxgrid의 getrows 메소드를 사용하여 전달하는 것이 일반적이지만
+    * 이 경우 보여지는 column들만 가능하기 때문에 Column 수에 따라 커스터마이징 한 페이징을 하는 경우 알맞지 않습니다.
+    */
+    doExcel(grid_id, file_name, row_data);
+}
+
+// 버튼에 클릭 이벤트 할당
+var el = document.getElementById("excelButton");
+el.addEventListener("click", clickEvent);
+```
+
 ### 백엔드_사용법
+백엔드 방면에서는 요청을 처리하고 컨트롤러의 ModelAndView 객체를 통해 반환시켜줍니다.
 
+1. 컨트롤러
+```sh
+@RequestMapping(value="EXCEL", method=RequestMethod.POST)
+public ModelAndView postEXCEL(..) {
+...
+return new ModelAndView(new jqxGridExcelStreamingView(), "model", param_map);
+}
+```
 
-## 예제
+2. 엑셀을 생성시킬 jqxGridExcelStreamingView 클래스
+```sh
+@Component
+public class JqxGridExcelStreamingView extends AbstractXlsxStreamingView {
+    //SXSSFWorkbook 객체 생성
+    @Override
+    protected SXSSFWorkbook createWorkbook(Map<String, Object> model, HttpServletRequest request) {
+        return RenderExcelFromJqxGrid.makeWorkbook(model);
+    }
+    
+    //만들어진 엑셀 파일 처리
+    //dispose는 상속받은 AbstractXlsxStreamingView에서 처리된다.
+    @Override
+	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        //응답할 response 객체의 헤더를 설정하여 파일을 다운로드 시킨다.
+        ... 코드 생략
+    }
+}
+```
 
+3. 엑셀을 렌더링 할 RenderExcelFromJqxGrid 클래스
+```sh
+public class RenderExcelFromJqxGrid {
+    //실질적인 엑셀 파일을 렌더링하는 코드가 들어간다.
+    public static SXSSFWorkbook makeWorkbook(Map<String, Object> model){
+        SXSSFWorkbook wb = new SXSSFWorkbook(100); // 100개의 row씩을 메모리에 담고 초과 시 서버의 디스크로 자동 플러쉬한다.
+        ...
+        return wb;
+    }
+}
+```
 
 ## 관련프로젝트
 
+JQWidgets [GitHub](https://github.com/jqwidgets)<br>
 JQuery Cookie [GitHub](https://github.com/carhartl/jquery-cookie)
 
 
