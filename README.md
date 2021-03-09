@@ -25,6 +25,7 @@ SpringBoot 기반의 프로젝트로 예시가 되어있는 코드이며 개발�
 ## 필요설치
 
 사용을 위해 필요한 설치는 Front-End 방면과 Back-End 방면으로 나뉘어집니다.
+※ GitHub에 업로드 된 코드들에 대한 설치는 제외합니다.
 
 ### 프론트엔드
 이 프로젝트는 JQWidgets의 JqxGrid 기반의 프로젝트이기 때문에 [JQWidgets의 다운로드 및 설치](https://www.jqwidgets.com/download/)가 필요합니다.<br>
