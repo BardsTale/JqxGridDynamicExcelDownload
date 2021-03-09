@@ -34,10 +34,10 @@ NPM을 통한 설치를 원한다면 아래를 참고하세요.<br>
 >설치 시 불필요한 컨텐츠들도 다수 포함하고 있으니 [예시](#예시)를 참고하여 정리하시는 것을 권장드립니다.
 
 ```sh
-데모가 포함된 설치
+#데모가 포함된 설치
 $ npm install jqwidgets-framework
 
-스크립트만 설치
+#스크립트만 설치
 $ npm install jqwidgets-scripts
 ```
 
