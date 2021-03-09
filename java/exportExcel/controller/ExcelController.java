@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ExcelController {
 
 	@RequestMapping(value="EXCEL", method=RequestMethod.POST)
-	public ModelAndView getEXCEL(@RequestParam("param") String params, HttpSession session) throws Exception {
+	public ModelAndView postEXCEL(@RequestParam("param") String params, HttpSession session) throws Exception {
 	  //RestController지만 JSON Parser를 특정하지 않았기 때문에 해쉬맵으로 파싱. 특정될 경우 아래의 예외처리를 포함해서 수정.
 		ObjectMapper mapper = new ObjectMapper();
 		HashMap<String, Object> param_map = new HashMap<String, Object>();
