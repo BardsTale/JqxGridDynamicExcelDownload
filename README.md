@@ -1,9 +1,11 @@
 # JqxGrid Dynamic Excel Download
 [![ExportExcel-Jqxgrid](https://img.shields.io/badge/Jqxgrid-ExportExcel-green)](https://github.com/BardsTale/JqxGridDynamicExcelDownload)
 
-JqxGrid의 내장된 Export 기능을 대신하여 DOM 속성과 AbstractXlsxStreamingView를 사용한 스트리밍 방식의 동적 엑셀 다운로드입니다.<br>
+JqxGrid의 내장된 Export 기능을 대신하여 DOM 속성과 AbstractXlsxStreamingView를 사용한 스트리밍 방식의<br>
+동적 엑셀 다운로드입니다.<br>
 대상이 될 JqxGrid의 Column에 따라 동적으로 엑셀 Column을 구성하며 병합된 Column Header도 동적으로 구성합니다.<br>
-추가적으로 Column 수를 제한하여 커스터마이징 한 페이징을 하는 경우 페이지 마다 시트를 나눠 동적으로 구성하는 기능도 제공합니다.
+추가적으로 Column 수를 제한하여 커스터마이징 한 페이징을 하는 경우 페이지 마다 시트를 나눠 동적으로 구성하는 기능도<br>
+제공합니다.<br>
 
 SpringBoot 기반의 프로젝트로 예시가 되어있는 코드이며 개발환경이 다를 경우 해당 코드들을 알맞게 수정해주시면 됩니다.<br>
 또한 부가적인 UI/UX 옵션을 포함하고 있어 JQuery와 JQuery Cookie 그리고 SweetAlert2를 필요로 하며<br>
